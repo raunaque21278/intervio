@@ -1,0 +1,232 @@
+/* StudentDashboard.css */
+.student-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.student-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.welcome-badge {
+  background-color: #7568FA;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Registration Screen */
+.registration-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.get-started-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.get-started-subtitle {
+  color: #666;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.highlight {
+  font-weight: 600;
+}
+
+.name-input-group {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.name-input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.name-input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.continue-btn {
+  background-color: #7568FA;
+  color: white;
+  border: none;
+  padding: 0.75rem 2.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.waiting-message {
+  text-align: center;
+  margin-top: 4rem;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.waiting-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.waiting-message h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.question-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-top: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.timer {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.question-container h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.option {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background-color: #f9f7ff;
+  border-color: #7568FA;
+}
+
+.option.selected {
+  background-color: #7568FA;
+  color: white;
+  border-color: #7568FA;
+}
+
+.submit-btn {
+  display: block;
+  background-color: #7568FA;
+  color: white;
+  border: none;
+  padding: 0.75rem 2.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.submit-btn:disabled {
+  background-color: #bebcda;
+  cursor: not-allowed;
+}
+
+.results-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.results-container h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.results-container > p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.poll-results {
+  margin-top: 2rem;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.result-option {
+  width: 120px;
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  flex: 1;
+  background-color: #f0f0f0;
+  height: 16px;
+  margin-right: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #7568FA;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.votes-count {
+  width: 30px;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.your-vote-marker {
+  position: absolute;
+  right: -70px;
+  color: #7568FA;
+  font-size: 0.8rem;
+  font-weight: 500;
+}

@@ -1,0 +1,242 @@
+/* TeacherDashboard.css */
+.teacher-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.poll-creation {
+  width: 100%;
+}
+
+.welcome-badge {
+  background-color: #7568FA;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.poll-creation h2 {
+  font-size: 1.8rem;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.poll-creation > p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.question-textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  resize: none;
+  outline: none;
+}
+
+.time-dropdown {
+  background-color: #f8f8f8;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.25rem;
+}
+
+.options-section {
+  margin-top: 2rem;
+}
+
+.options-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.option-number {
+  background-color: #f0f0f0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.option-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.radio-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.radio-label {
+  margin-left: 0.25rem;
+}
+
+.add-option-btn {
+  background-color: transparent;
+  color: #7568FA;
+  border: 1px dashed #7568FA;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ask-question-btn {
+  background-color: #7568FA;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  display: block;
+  max-width: 160px;
+  margin: 2rem auto 0;
+}
+
+.active-poll {
+  margin-top: 2rem;
+}
+
+.poll-results {
+  margin-top: 1.5rem;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.result-item span {
+  width: 100px;
+}
+
+.progress-bar {
+  flex: 1;
+  background-color: #f0f0f0;
+  height: 20px;
+  margin: 0 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #4f4fed;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.end-poll-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.students-list {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.students-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.students-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.remove-student-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  color: #888;
+}
