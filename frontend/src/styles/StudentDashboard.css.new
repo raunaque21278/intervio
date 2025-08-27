@@ -1,36 +1,48 @@
-/* StudentDashboard.css */
+/* Student Dashboard styles */
 .student-container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Inter', sans-serif;
-  background-color: white;
 }
 
-.poll-card {
-  background: white;
-  border-radius: 8px;
+.student-header {
+  display: flex;
+  justify-content: center;
   margin-bottom: 2rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: none;
+}
+
+.welcome-badge {
+  background-color: #7568FA;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Poll card styles */
+.poll-card {
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .poll-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  max-width: 500px;
-  margin: 0 auto 0.5rem;
+  padding: 12px 16px;
+  background-color: #f8f8f8;
+  color: #333;
+  font-size: 0.9rem;
 }
 
 .timer-display {
-  color: #FF3B30;
-  font-weight: 500;
+  color: #7568FA;
+  font-weight: 600;
 }
 
 .poll-question {
@@ -161,33 +173,30 @@
   100% { transform: rotate(360deg); }
 }
 
-.waiting-title {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #333;
-}
-
-.question-container {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  margin-top: 2rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.timer {
+.waiting-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
+  min-height: 60vh;
   color: #666;
 }
 
-.question-container h2 {
-  margin-bottom: 2rem;
-  text-align: center;
+.waiting-badge {
+  background-color: #7568FA;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+}
+
+.waiting-message h2 {
   font-size: 1.2rem;
+  font-weight: 500;
+  color: #666;
 }
 
 .options-container {
@@ -243,7 +252,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   margin-right: 10px;
-  flex-shrink: 0;
+  border: 1px solid #6F5AF3;
 }
 
 .option-text {
@@ -257,7 +266,7 @@
 
 .submit-btn {
   display: block;
-  background-color: #7568FA;
+  background-color: #6F5AF3;
   color: white;
   border: none;
   padding: 0.75rem 2rem;
@@ -265,9 +274,8 @@
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  margin: 1.5rem auto 1.5rem;
-  width: calc(100% - 3rem);
-  max-width: 200px;
+  margin: 0.5rem 1rem 1rem;
+  width: calc(100% - 2rem);
   transition: background-color 0.2s;
 }
 
@@ -316,37 +324,4 @@
   box-shadow: 0 4px 12px rgba(117, 104, 250, 0.4);
   cursor: pointer;
   z-index: 1000;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: pulse 2s infinite;
 }
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(117, 104, 250, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(117, 104, 250, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(117, 104, 250, 0);
-  }
-}
-
-.chat-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(117, 104, 250, 0.5);
-  animation: none;
-}
-
-.notification-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  background-color: #ff4757;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-
-

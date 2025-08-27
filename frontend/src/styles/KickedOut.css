@@ -1,0 +1,38 @@
+.kickedout-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.kickedout-header {
+  margin-bottom: 24px;
+}
+
+.kickedout-badge {
+  background: #7568FA;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.kickedout-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.kickedout-desc {
+  color: #888;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 0;
+}

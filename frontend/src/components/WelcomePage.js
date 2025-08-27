@@ -19,34 +19,38 @@ const WelcomePage = ({ onRegister }) => {
   return (
     <div className="welcome-container">
       <div className="welcome-card">
-        <div className="welcome-badge">Live Polling</div>
-        <h1 className="welcome-title">Welcome to the Live Polling System</h1>
-        <p className="welcome-subtitle">Please select the role that best describes you to begin using the live polling system.</p>
+        <div className="intervue-poll-badge">Intervue Poll</div>
         
-        <div className="button-container">
+        <h1 className="welcome-title">Welcome to the Live Polling System</h1>
+        <p className="welcome-subtitle">Please select the role that best describes you to begin using the live polling system</p>
+        
+        <div className="role-cards-container">
           <div 
-            className={`role-button ${selectedRole === 'student' ? 'selected' : ''}`} 
+            className={`role-card ${selectedRole === 'student' ? 'selected' : ''}`} 
             onClick={() => handleRoleSelect('student')}
           >
             <h2>I'm a Student</h2>
-            <p>Enter here to submit answers for the polling and get instant results.</p>
+            <p>Lorem ipsum is simply dummy text of the printing and typesetting industry</p>
           </div>
+          
           <div 
-            className={`role-button ${selectedRole === 'teacher' ? 'selected' : ''}`} 
+            className={`role-card ${selectedRole === 'teacher' ? 'selected' : ''}`} 
             onClick={() => handleRoleSelect('teacher')}
           >
             <h2>I'm a Teacher</h2>
-            <p>Submit questions and view results.</p>
+            <p>Submit answers and view live poll results in real-time.</p>
           </div>
         </div>
         
-        <button 
-          className={`continue-btn ${!selectedRole ? 'disabled' : ''}`} 
-          onClick={handleContinue}
-          disabled={!selectedRole}
-        >
-          Continue
-        </button>
+        <div className="button-container">
+          <button 
+            className="continue-btn"
+            onClick={handleContinue}
+            disabled={!selectedRole}
+          >
+            Continue
+          </button>
+        </div>
       </div>
     </div>
   );

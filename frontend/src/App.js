@@ -3,11 +3,13 @@ import './App.css';
 import StudentDashboard from './components/StudentDashboard';
 import TeacherDashboard from './components/TeacherDashboard';
 import WelcomePage from './components/WelcomePage';
+import KickedOut from './components/KickedOut';
 import socket from './socket';
 
 function App() {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null); // "teacher" or "student"
+  const [kickedOut, setKickedOut] = useState(false);
 
   // Handle user registration
   const handleRegister = (name, selectedRole) => {
@@ -33,14 +35,23 @@ function App() {
     };
   }, []);
 
+  // Handle student kick out
+  const handleKickout = () => {
+    setKickedOut(true);
+    setUser(null);
+    setRole(null);
+  };
+
   return (
     <div className="App">
-      {!role ? (
+      {kickedOut ? (
+        <KickedOut />
+      ) : !role ? (
         <WelcomePage onRegister={handleRegister} />
       ) : role === "teacher" ? (
         <TeacherDashboard user={user} />
       ) : (
-        <StudentDashboard user={user} />
+        <StudentDashboard user={user} onKickout={handleKickout} />
       )}
     </div>
   );

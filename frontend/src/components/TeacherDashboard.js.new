@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import socket from '../socket';
 import '../styles/TeacherDashboardNew.css';
-import ChatModal from './ChatModal';
 
 const TeacherDashboard = ({ user }) => {
   const [question, setQuestion] = useState('');
@@ -13,30 +12,15 @@ const TeacherDashboard = ({ user }) => {
   const [pollActive, setPollActive] = useState(false);
   const [results, setResults] = useState({});
   const [students, setStudents] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [answeredStudents, setAnsweredStudents] = useState([]);
   const [currentPoll, setCurrentPoll] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [timeLimit, setTimeLimit] = useState(60); // Time limit in seconds - will be used for timer functionality
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [hasNewMessages, setHasNewMessages] = useState(false);
-
-  // Register teacher when component mounts
-  useEffect(() => {
-    socket.emit('register_teacher', user.name);
-  }, [user.name]);
 
   useEffect(() => {
     // Listen for new questions
     socket.on('new_question', (data) => {
       setCurrentPoll(data);
-    });
-    
-    // Listen for new chat messages and set notification
-    socket.on('new_message', () => {
-      if (!isChatOpen) {
-        setHasNewMessages(true);
-      }
     });
     
     // Listen for student updates
@@ -94,9 +78,8 @@ const TeacherDashboard = ({ user }) => {
       socket.off('update_students');
       socket.off('live_results');
       socket.off('poll_ended');
-      socket.off('new_message');
     };
-  }, [students, isChatOpen]);
+  }, [students]);
 
   const handleAddOption = () => {
     if (options.length < 4) {
@@ -162,7 +145,6 @@ const TeacherDashboard = ({ user }) => {
     setCurrentPoll(null);
   };
 
-  // eslint-disable-next-line no-unused-vars
   const handleRemoveStudent = (studentId) => {
     socket.emit('remove_student', studentId);
   };
@@ -245,69 +227,62 @@ const TeacherDashboard = ({ user }) => {
                 </button>
               )}
             </div>
+            
+            <button 
+              onClick={handleCreatePoll}
+              className="ask-question-btn"
+              disabled={pollActive}
+            >
+              Ask Question
+            </button>
           </div>
-          
-          <button 
-            onClick={handleCreatePoll}
-            className="ask-question-btn"
-            disabled={pollActive}
-          >
-            Ask Question
-          </button>
         </>
       ) : (
         <>
-          <div style={{textAlign: 'right', marginBottom: '1rem'}}>
-            <button className="view-poll-history-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-              </svg>
-              View Poll history
-            </button>
-          </div>
+          <button className="view-history-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+            </svg>
+            View Poll history
+          </button>
           
           <div className="results-container">
-            <h2 className="question-title">Question</h2>
+            <div className="question-title">Question</div>
             
-            <div className="poll-card-container">
-              <div className="poll-card">
-                <div className="poll-question">
-                  <h3>{currentPoll?.question || "Which planet is known as the Red Planet?"}</h3>
-                </div>
-                <div className="poll-results">
-                  {options
-                    .filter(opt => opt.text.trim())
-                    .map((option, index) => {
-                      const voteCount = results[option.text] || 0;
-                      const totalVotes = Object.values(results).reduce((sum, count) => sum + count, 0) || 1;
-                      const percentage = Math.round((voteCount / totalVotes) * 100);
-                      
-                      return (
-                        <div key={index} className="result-item">
-                          <div className="progress-container">
-                            <div 
-                              className="progress"
-                              style={{ width: `${percentage}%` }}
-                            ></div>
+            <div className="poll-card">
+              <div className="poll-question">
+                <h3>{currentPoll?.question || question}</h3>
+              </div>
+              <div className="poll-results">
+                {options
+                  .filter(opt => opt.text.trim())
+                  .map((option, index) => {
+                    const voteCount = results[option.text] || 0;
+                    const totalVotes = Object.values(results).reduce((sum, count) => sum + count, 0) || 1;
+                    const percentage = Math.round((voteCount / totalVotes) * 100);
+                    
+                    return (
+                      <div key={index} className="result-item">
+                        <div className="result-header">
+                          <div className="result-option">
+                            <span className="option-circle">{index + 1}</span>
+                            {option.text}
                           </div>
-                          <div className="result-header">
-                            <div className="result-option">
-                              <span className="option-circle">{index + 1}</span>
-                              <span className={percentage >= 50 ? 'option-text-white' : 'option-text-black'}>
-                                {option.text}
-                              </span>
-                            </div>
-                            <div className="result-percentage">
-                              <span className={percentage > 80 ? 'result-percentage-white' : 'result-percentage-black'}>
-                                {percentage}%
-                              </span>
-                            </div>
-                          </div>
+                          <div className="result-percentage">{percentage}%</div>
                         </div>
-                      );
-                    })}
-                </div>
+                        <div className="progress-container">
+                          <div 
+                            className="progress"
+                            style={{ width: `${percentage}%` }}
+                          ></div>
+                        </div>
+                        <div className="votes-info">
+                          <span>{voteCount} vote{voteCount !== 1 ? 's' : ''}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
             
@@ -315,32 +290,19 @@ const TeacherDashboard = ({ user }) => {
               + Ask a new question
             </button>
           
-          {/* Hidden button for ending poll - can be triggered from chat interface */}
-          <button onClick={handleEndPoll} style={{display: 'none'}} className="end-poll-btn">
-            End Poll
-          </button>
+            {/* Hidden button for ending poll - can be triggered from chat interface */}
+            <button onClick={handleEndPoll} style={{display: 'none'}} className="end-poll-btn">
+              End Poll
+            </button>
           </div>
           
-          <div 
-            className="chat-button" 
-            onClick={() => {
-              setIsChatOpen(true);
-              setHasNewMessages(false);
-            }}
-          >
+          <div className="chat-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
               <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
             </svg>
-            {hasNewMessages && <span className="notification-badge"></span>}
           </div>
         </>
       )}
-      
-      <ChatModal 
-        isOpen={isChatOpen} 
-        onClose={() => setIsChatOpen(false)} 
-        user={{...user, name: user.name || 'Teacher'}}
-      />
     </div>
   );
 };
