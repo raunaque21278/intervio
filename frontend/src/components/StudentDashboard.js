@@ -6,7 +6,7 @@ import ChatModal from './ChatModal';
 
 const StudentDashboard = ({ user, onKickout }) => {
   const [currentPoll, setCurrentPoll] = useState(null);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [results, setResults] = useState({});
   const [timeLeft, setTimeLeft] = useState(0);
@@ -20,7 +20,7 @@ const StudentDashboard = ({ user, onKickout }) => {
     // Listen for new questions
     socket.on('new_question', (data) => {
       setCurrentPoll(data);
-      setSelectedOption('');
+      setSelectedOption(null);
       setHasAnswered(false);
       setPollEnded(false);
       
@@ -94,9 +94,10 @@ const StudentDashboard = ({ user, onKickout }) => {
   }, [currentPoll, timeLeft, hasAnswered, pollEnded]);
 
   const handleSubmitAnswer = () => {
-    if (!selectedOption || !currentPoll) return;
-    console.log('Submitting answer:', selectedOption);
-    socket.emit('submit_answer', { answer: selectedOption });
+    if (selectedOption === null || !currentPoll) return;
+    const answer = currentPoll.options[selectedOption];
+    console.log('Submitting answer:', answer);
+    socket.emit('submit_answer', { answer });
     socket.once('answer_submitted', (data) => {
       console.log('Answer submitted acknowledged:', data);
     });
@@ -211,20 +212,20 @@ const StudentDashboard = ({ user, onKickout }) => {
             <div className="options-container">
               {currentPoll.options.map((option, index) => (
                 <div 
-                  key={index} 
-                  className={`option ${selectedOption === option ? 'selected' : ''}`}
-                  onClick={() => setSelectedOption(option)}
+                  key={option + '-' + index} 
+                  className={`option ${selectedOption === index ? 'selected' : ''}`}
+                  onClick={() => setSelectedOption(index)}
                 >
                   <span className="option-circle">{index + 1}</span>
                   <span className="option-text">{option}</span>
-                  {selectedOption === option && <span className="selected-indicator">✓</span>}
+                  {selectedOption === index && <span className="selected-indicator">✓</span>}
                 </div>
               ))}
             </div>
             
             <button 
               onClick={handleSubmitAnswer}
-              disabled={!selectedOption}
+              disabled={selectedOption === null}
               className="submit-btn"
             >
               Submit Answer
